@@ -1,0 +1,38 @@
+.container {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .hero {
+    margin-bottom: 2rem;
+  }
+  
+  .latestTitle {
+    margin: 2rem 0 1rem 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .productsGrid {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .productCard {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    width: 200px;
+    text-align: center;
+  }
+  
+  .addToCart {
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+  }
+  

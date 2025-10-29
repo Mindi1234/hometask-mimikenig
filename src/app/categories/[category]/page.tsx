@@ -1,18 +1,11 @@
 "use client";
 import ProductCard from '@/app/components/product/ProductCard';
+import { Product } from '@/app/types/product';
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import styles from './page.module.css';
 
-interface Product {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    image: string;
-    quantity: number;
-}
+
 
 export default function ProductsPerCategory(){
     const params = useParams();
@@ -35,13 +28,16 @@ export default function ProductsPerCategory(){
 
     if (!category) return <p>No category selected</p>;
     if (loading) return <p>Loading...</p>;
-    
+
     return (
+        <>
+        <h1 className={styles.title}>{category}</h1>
         <div className={styles.grid}>
             {products.map(product => (
                 <ProductCard key={product.id} {...product} />
             ))}
         </div>
+        </>
     );
    
 

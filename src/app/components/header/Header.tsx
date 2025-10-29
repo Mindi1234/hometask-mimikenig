@@ -8,9 +8,15 @@ import Cart from "../cart/CartItem";
 
 
 export default function Header() {
+  const [clientCartCount, setClientCartCount] = useState(0);
+  const storeCartCount = useCartStore((state) => state.cartCount);
   const [scrolled, setScrolled] = useState(false);
-  const cartCount = useCartStore((state) => state.cartCount);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+
+useEffect(() => {
+       setClientCartCount(storeCartCount);
+      }, [storeCartCount]); 
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,14 +31,10 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-//   const windowCart = (e) => {
-//     e.preventDefault();
-//     setIsCartOpen(prev => !prev);
-// };
-const windowCart = (e: React.MouseEvent<HTMLAnchorElement>) => { 
-    e.preventDefault();
-    setIsCartOpen(prev => !prev);
-};
+  const windowCart = (e: React.MouseEvent<HTMLAnchorElement>) => { 
+       e.preventDefault();
+      setIsCartOpen(prev => !prev);
+      };
   return (
    <>
    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
@@ -53,22 +55,22 @@ const windowCart = (e: React.MouseEvent<HTMLAnchorElement>) => {
       </Link>
       <nav className={styles.nav}>
         <Link href="/" className={styles.link}>Home</Link>
-        <Link href="/categories/men's clothing" className={styles.link}>Mens</Link>
-        <Link href="/categories/women's clothing" className={styles.link}>Womens</Link>
+        <Link href="/categories/men's clothing" className={styles.link}>Men's clothing</Link>
+        <Link href="/categories/women's clothing" className={styles.link}>Women's clothing</Link>
         <Link href="/categories/jewelery" className={styles.link}>Jewelery</Link>
         <Link href="/categories/electronics" className={styles.link}>Electronics</Link>
       </nav>
 
-      <a 
-          href="/cart" 
-          onClick={windowCart} 
-          className={`${styles.link} ${styles.cartLink}`}
-        >
-          Cart ({cartCount})
-        </a>
-      
-    </header>
-    {isCartOpen && <Cart closeCart={() => setIsCartOpen(false)} />}
+      <Link 
+       href="/cart" 
+       onClick={windowCart} 
+       className={`${styles.link} ${styles.cartLink}`}
+      >
+      🛒 Cart ({clientCartCount})
+       </Link>
+
+  </header>
+  {isCartOpen && <Cart closeCart={() => setIsCartOpen(false)} />}
    </>
   );
 }

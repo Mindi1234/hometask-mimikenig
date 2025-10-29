@@ -1,0 +1,104 @@
+.checkoutPage {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header {
+    display: flex;
+    text-align: center;
+    gap: 0.5rem; 
+    align-items: baseline;
+    }
+
+
+  .h1 {
+    margin-top: 10%;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  .h2 {
+    color: orange;
+    margin-top: 10%;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  
+  .backLink {
+    display: inline-block;
+    margin-bottom: 2rem;
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .backLink:hover {
+    text-decoration: underline;
+  }
+  
+  .cartList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .cartItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem;
+  }
+  
+  .itemImage {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-right: 1rem;
+  }
+  
+  .itemInfo {
+    flex: 1;
+  }
+  
+  .itemTitle {
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+  }
+  
+  .itemPrice {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .cartFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 2px solid #000;
+  }
+  
+  .total {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  
+  .checkoutBtn {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .checkoutBtn:hover {
+    background-color: #444;
+  }
+  

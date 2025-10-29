@@ -3,6 +3,12 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 30px;
-    padding: 100px;
+    /* padding: 20px; */
   }
+
+  .title {
+    margin-top: 9%;
+    text-align: center;
+  }
+  
   
