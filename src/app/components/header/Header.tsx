@@ -55,8 +55,8 @@ useEffect(() => {
       </Link>
       <nav className={styles.nav}>
         <Link href="/" className={styles.link}>Home</Link>
-        <Link href="/categories/men's clothing" className={styles.link}>Men's clothing</Link>
-        <Link href="/categories/women's clothing" className={styles.link}>Women's clothing</Link>
+        <Link href="/categories/men" className={styles.link}>Men's clothing</Link>
+        <Link href="/categories/women" className={styles.link}>Women's clothing</Link>
         <Link href="/categories/jewelery" className={styles.link}>Jewelery</Link>
         <Link href="/categories/electronics" className={styles.link}>Electronics</Link>
       </nav>

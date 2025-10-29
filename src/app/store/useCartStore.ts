@@ -1,14 +1,5 @@
 import { create } from 'zustand';
-
-interface Product {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    image: string;
-    quantity: number;
-}
+import { Product } from '@/app/types/product';
 
 interface CartState {
     products: Product[];
@@ -23,7 +14,7 @@ interface CartState {
     localStorage.setItem("cart", JSON.stringify({ products, cartCount }));
   };
   const loadFromLocalStorage = (): { products: Product[]; cartCount: number } => {
-    if (typeof window === "undefined") return { products: [], cartCount: 0 }; // ל־SSR
+    if (typeof window === "undefined") return { products: [], cartCount: 0 }; 
     const data = localStorage.getItem("cart");
     if (data) return JSON.parse(data);
     return { products: [], cartCount: 0 };

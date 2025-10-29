@@ -2,24 +2,18 @@ import React from "react";
 import Link from "next/link";
 import styles from '@/app/components/product/ProductCard.module.css';
 import { useCartStore } from "@/app/store/useCartStore";
+import { useWishlistStore } from "@/app/store/useWishListStore";
 import { Product } from '@/app/types/product';
 
 
-// interface CardProps {
-//     id: number;
-//     title: string;
-//     price: number;
-//     description: string;
-//     category: string;
-//     image: string;
-//     quantity: number;
-// }
-
 export default function ProductCard({ id, title, price, description, category, image }: Product) {
     const { products, addItem, removeItem  } = useCartStore();
-    
+    const { products: wishlistProducts, toggleWishlist } = useWishlistStore();
     const productInCart = products.find((p) => p.id === id);
     const quantity = productInCart?.quantity || 0;
+
+    const isInWishlist = wishlistProducts.some(p => p.id === id);
+
     return(
     
         <div className={styles.card}>
@@ -50,7 +44,12 @@ export default function ProductCard({ id, title, price, description, category, i
                     +
                 </button>
             </div>
-
+            <button 
+                    className={styles.heartButton} 
+                    onClick={() => toggleWishlist({id, title, description, price, category, image, quantity})}
+                >
+                    {isInWishlist ? '❤️' : '🤍'}
+                </button>
     </div>
     
     );

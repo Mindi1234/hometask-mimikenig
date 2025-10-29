@@ -10,6 +10,14 @@ import styles from './page.module.css';
 export default function ProductsPerCategory(){
     const params = useParams();
     const category = Array.isArray(params.category) ? params.category[0] : params.category;
+    const categoryMap: Record<string, string> = {
+        men: "men's clothing",
+        women: "women's clothing",
+        jewelery: "jewelery",
+        electronics: "electronics",
+      };
+    
+      const apiCategory = category ? categoryMap[category]: '/';
 
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
@@ -18,7 +26,7 @@ export default function ProductsPerCategory(){
         if (!category) return;
 
         setLoading(true);
-        fetch(`https://fakestoreapi.com/products/category/${encodeURIComponent(category)}`)
+        fetch(`https://fakestoreapi.com/products/category/${encodeURIComponent(apiCategory)}`)
             .then(res => res.json())
             .then((data: Product[]) => {
                 setProducts(data);

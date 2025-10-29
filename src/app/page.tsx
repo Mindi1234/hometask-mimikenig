@@ -28,8 +28,8 @@ export default function Home() {
         <Image 
           src="/Screenshot 2025-10-29 120859.png" 
           alt="Main Banner"
-          width={800}
-          height={400}
+          width={600}
+          height={300}
           className={styles.heroImage}
         />
       </div>
