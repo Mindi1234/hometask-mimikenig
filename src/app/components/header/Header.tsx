@@ -6,7 +6,6 @@ import { useCartStore } from "@/app/store/useCartStore";
 import styles from '@/app/components/header/Header.module.css';
 import Cart from "../cart/CartItem";
 
-
 export default function Header() {
   const [clientCartCount, setClientCartCount] = useState(0);
   const storeCartCount = useCartStore((state) => state.cartCount);

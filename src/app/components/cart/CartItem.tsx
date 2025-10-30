@@ -5,12 +5,9 @@ import { useCartStore } from "@/app/store/useCartStore";
 import { Product } from '@/app/types/product';
 import styles from './CartItem.module.css'; 
 
-
 interface CartProps {
     closeCart: () => void; 
 }
-
-
 
 export default function Cart({ closeCart }: CartProps) {
 

@@ -5,7 +5,6 @@ import { useCartStore } from "@/app/store/useCartStore";
 import { useWishlistStore } from "@/app/store/useWishListStore";
 import { Product } from '@/app/types/product';
 
-
 export default function ProductCard({ id, title, price, description, category, image }: Product) {
     const { products, addItem, removeItem  } = useCartStore();
     const { products: wishlistProducts, toggleWishlist } = useWishlistStore();

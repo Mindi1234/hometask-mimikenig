@@ -4,9 +4,6 @@ import { Product } from '@/app/types/product';
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import styles from './page.module.css';
-
-
-
 export default function ProductsPerCategory(){
     const params = useParams();
     const category = Array.isArray(params.category) ? params.category[0] : params.category;
