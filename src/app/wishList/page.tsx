@@ -1,6 +1,5 @@
 'use client'; 
 import Link from 'next/link';
-import { Product } from '@/app/types/product';
 import styles from './page.module.css';
 import { useWishlistStore } from '../store/useWishListStore';
 
