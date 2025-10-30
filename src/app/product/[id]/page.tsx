@@ -9,14 +9,15 @@ import { useWishlistStore } from "@/app/store/useWishListStore";
 
 export default function ProductPage({ id, title, price, description, category, image }: Product){
     const router = useRouter();
-    const { products, addItem, removeItem  } = useCartStore();
-    const { products: wishlistProducts, toggleWishlist } = useWishlistStore();
-    const productInCart = products.find((p) => p.id === id);
-    const quantity = productInCart?.quantity || 0;
-    const isInWishlist = wishlistProducts.some(p => p.id === id);
     const { id: paramId } = useParams();
+    const { products, addItem, removeItem } = useCartStore();
+    const { products: wishlistProducts, toggleWishlist } = useWishlistStore();
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
+
+    const productInCart = product ? products.find((p) => p.id === product.id) : null;
+    const quantity = productInCart?.quantity || 0;
+    const isInWishlist = product ? wishlistProducts.some(p => p.id === product.id) : false;
 
     useEffect(() => {
         if (!paramId) return;
@@ -48,7 +49,7 @@ export default function ProductPage({ id, title, price, description, category, i
             <div className={styles.quantityControls}>
                 <button 
                      className={styles.addButton} 
-                    onClick={() => removeItem(id)}
+                    onClick={() => removeItem(product.id)}
                     disabled={quantity === 0} 
                 >
                     −
@@ -56,14 +57,32 @@ export default function ProductPage({ id, title, price, description, category, i
                 <span className={styles.quantity}>{quantity}</span>
                 <button 
                     className={styles.addButton} 
-                    onClick={() => addItem({ id, title, description, price, category, image, quantity: 1 })}
+                    onClick={() => addItem({ 
+                      id: product.id, 
+                      title: product.title, 
+                      description: product.description, 
+                      price: product.price, 
+                      category: product.category, 
+                      image: product.image, 
+                      quantity: 1 
+                    })}
+                    
                 >
                     +
                 </button>
             </div>
             <button 
                     className={styles.heartButton} 
-                    onClick={() => toggleWishlist({id, title, description, price, category, image, quantity})}
+                    onClick={() => toggleWishlist({
+                      id: product.id,
+                      title: product.title,
+                      description: product.description,
+                      price: product.price,
+                      category: product.category,
+                      image: product.image,
+                      quantity
+                    })}
+                    
                 >
                     {isInWishlist ? '❤️' : '🤍'}
                 </button>
