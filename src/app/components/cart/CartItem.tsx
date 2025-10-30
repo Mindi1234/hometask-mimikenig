@@ -10,7 +10,7 @@ interface CartProps {
 }
 
     export default function Cart({ closeCart }: CartProps) {
-        const { products } = useCartStore();  
+        const { products, addItem, removeItem  } = useCartStore(); 
         const total = products.reduce((acc, item) => acc + item.price * item.quantity, 0);
     
         return(
@@ -20,7 +20,6 @@ interface CartProps {
                 <h3>cart</h3>
                 <button className={styles.closeBtn} onClick={closeCart}>×</button>
               </div>
-      
               {products.length === 0 ? (
               <p className={styles.empty}>your cart is empty</p>
             ) : (
@@ -31,13 +30,37 @@ interface CartProps {
                       <img src={item.image} alt={item.title} className={styles.itemImage} />
                       <div className={styles.itemInfo}>
                         <p className={styles.itemTitle}>{item.title}</p>
-                        <p className={styles.itemPrice}>
-                        {item.quantity} × ${item.price?.toFixed(2) || item.price}
-                        </p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+                        <p className={styles.itemPrice}>${item.price?.toFixed(2) || item.price}</p>
+                        <div>
+                      <button
+                        onClick={() => removeItem(item.id)}
+                        disabled={item.quantity === 0}
+                      >
+                        −
+                      </button>
+
+                      <span>{item.quantity}</span>
+
+                      <button
+                        onClick={() =>
+                          addItem({
+                            id: item.id,
+                            title: item.title,
+                            description: item.description,
+                            price: item.price,
+                            category: item.category,
+                            image: item.image,
+                            quantity: 1,
+                          })
+                        }
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
     
                 <div className={styles.cartFooter}>
                   <p className={styles.total}>total: ${total.toFixed(2)}</p>

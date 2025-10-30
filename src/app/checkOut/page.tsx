@@ -1,29 +1,13 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import { useCartStore } from "@/app/store/useCartStore"; 
 import { Product } from '@/app/types/product';
 import styles from './page.module.css';
 import Link from 'next/link';
 
 export default function CheckoutPage() {
-    const [products, setProducts] = useState<Product[]>([]);
-    const [total, setTotal] = useState(0);
-  
-    useEffect(() => {
-      if (typeof window === "undefined") return;
-  
-      const data = localStorage.getItem("cart");
-      if (data) {
-        const parsed = JSON.parse(data);
-        const loadedProducts: Product[] = parsed.products || [];
-        setProducts(loadedProducts);
-  
-        const totalPrice = loadedProducts.reduce(
-          (acc, item) => acc + item.price * item.quantity,
-          0
-        );
-        setTotal(totalPrice);
-      }
-    }, []);
+    const { products, addItem, removeItem  } = useCartStore(); 
+    const total = products.reduce((acc, item) => acc + item.price * item.quantity, 0);
   
     return (
       <div className={styles.checkoutPage}>
@@ -46,6 +30,32 @@ export default function CheckoutPage() {
                     <p className={styles.itemPrice}>
                       {item.quantity} × ${item.price.toFixed(2)}
                     </p>
+                    <div>
+                      <button
+                        onClick={() => removeItem(item.id)}
+                        disabled={item.quantity === 0}
+                      >
+                        −
+                      </button>
+
+                      <span>{item.quantity}</span>
+
+                      <button
+                        onClick={() =>
+                          addItem({
+                            id: item.id,
+                            title: item.title,
+                            description: item.description,
+                            price: item.price,
+                            category: item.category,
+                            image: item.image,
+                            quantity: 1,
+                          })
+                        }
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
                 </li>
               ))}
