@@ -23,7 +23,7 @@ export default function ProductCard({ id, title, price, description, category, i
 
         <div className={styles.cardContent}>
             <h3 className={styles.cardTitle}>{title}</h3>
-            <p className={styles.cardDescription}>{description}</p>
+            <h3 className={styles.cardDescription}>{category}</h3>
             <p className={styles.cardPrice}>${price.toFixed(2)}</p>
         </div>
         </Link>

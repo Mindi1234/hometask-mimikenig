@@ -59,7 +59,7 @@ useEffect(() => {
         <Link href="/categories/jewelery" className={styles.link}>Jewelery</Link>
         <Link href="/categories/electronics" className={styles.link}>Electronics</Link>
       </nav>
-
+      <Link href="/wishList" className={styles.link}>wishList</Link>
       <Link 
        href="/cart" 
        onClick={windowCart} 

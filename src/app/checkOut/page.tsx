@@ -1,5 +1,4 @@
 'use client';
-import React, { useEffect, useState } from 'react';
 import { useCartStore } from "@/app/store/useCartStore"; 
 import { Product } from '@/app/types/product';
 import styles from './page.module.css';
