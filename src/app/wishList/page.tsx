@@ -27,7 +27,7 @@ export default function WishListPage() {
                       className={styles.removeBtn}
                       onClick={() => toggleWishlist(product)}
                     >
-                      Remove
+                      remove
                     </button>
                   </div>
                 </div>
