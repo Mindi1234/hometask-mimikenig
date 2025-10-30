@@ -9,9 +9,8 @@ export default function WishListPage() {
 
     return (
         <div className={styles.wishlistPage}>
-    
           {products.length === 0 ? (
-            <p className={styles.empty}>your wishList is empty!</p>
+            <p>your wishList is empty!</p>
           ) : (
             <div className={styles.productsGrid}>
               {products.map((product) => (
@@ -22,7 +21,7 @@ export default function WishListPage() {
     
                   <div className={styles.actions}>
                     <Link href={`/product/${product.id}`} className={styles.detailsBtn}>
-                      View Details
+                     view details
                     </Link>
                     <button
                       className={styles.removeBtn}
