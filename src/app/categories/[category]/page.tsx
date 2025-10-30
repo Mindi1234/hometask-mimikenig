@@ -4,7 +4,7 @@ import { Product } from '@/app/types/product';
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import styles from './page.module.css';
-export default function ProductsPerCategory(){
+export default function ProductsPerCategory() {
     const params = useParams();
     const category = Array.isArray(params.category) ? params.category[0] : params.category;
     const categoryMap: Record<string, string> = {
@@ -12,10 +12,9 @@ export default function ProductsPerCategory(){
         women: "women's clothing",
         jewelery: "jewelery",
         electronics: "electronics",
-      };
-    
-      const apiCategory = category ? categoryMap[category]: '/';
+    };
 
+    const apiCategory = category ? categoryMap[category] : '/';
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -36,17 +35,17 @@ export default function ProductsPerCategory(){
 
     return (
         <>
-        <h1 className={styles.title}>{category}</h1>
-        <div className={styles.grid}>
-            {products.map(product => (
-                <ProductCard key={product.id} {...product} />
-            ))}
-        </div>
+            <h1 className={styles.title}>{category}</h1>
+            <div className={styles.grid}>
+                {products.map(product => (
+                    <ProductCard key={product.id} {...product} />
+                ))}
+            </div>
         </>
     );
-   
 
-  
+
+
 
 
 

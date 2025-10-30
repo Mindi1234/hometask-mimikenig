@@ -7,7 +7,7 @@ import { Product } from '@/app/types/product';
 import { useCartStore } from "@/app/store/useCartStore";
 import { useWishlistStore } from "@/app/store/useWishListStore";
 
-export default function ProductPage({ id, title, price, description, category, image }: Product){
+export default function ProductPage(){
     const router = useRouter();
     const { id: paramId } = useParams();
     const { products, addItem, removeItem } = useCartStore();
