@@ -5,12 +5,15 @@ import React, { useEffect, useState } from "react";
 import styles from './page.module.css';
 import { Product } from '@/app/types/product';
 import { useCartStore } from "@/app/store/useCartStore";
+import { useWishlistStore } from "@/app/store/useWishListStore";
 
 export default function ProductPage({ id, title, price, description, category, image }: Product){
-  const router = useRouter();
+    const router = useRouter();
     const { products, addItem, removeItem  } = useCartStore();
+    const { products: wishlistProducts, toggleWishlist } = useWishlistStore();
     const productInCart = products.find((p) => p.id === id);
     const quantity = productInCart?.quantity || 0;
+    const isInWishlist = wishlistProducts.some(p => p.id === id);
     const { id: paramId } = useParams();
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
@@ -58,6 +61,12 @@ export default function ProductPage({ id, title, price, description, category, i
                     +
                 </button>
             </div>
+            <button 
+                    className={styles.heartButton} 
+                    onClick={() => toggleWishlist({id, title, description, price, category, image, quantity})}
+                >
+                    {isInWishlist ? '❤️' : '🤍'}
+                </button>
           </div>
         </div>
       );
