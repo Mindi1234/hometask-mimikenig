@@ -23,6 +23,7 @@ interface CartState {
 
 export const useCartStore = create<CartState>((set, get) => {
     const { products, cartCount } = loadFromLocalStorage();
+    
 
     return {
         products,
