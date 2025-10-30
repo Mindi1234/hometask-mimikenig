@@ -9,46 +9,46 @@ interface CartProps {
     closeCart: () => void; 
 }
 
-export default function Cart({ closeCart }: CartProps) {
-    const { products } = useCartStore();  
-    const total = products.reduce((acc, item) => acc + item.price * item.quantity, 0);
-
-    return(
-        <div className={styles.cartOverlay}>
-        <div className={styles.cartContainer}>
-          <div className={styles.cartHeader}>
-            <h3>cart</h3>
-            <button className={styles.closeBtn} onClick={closeCart}>×</button>
+    export default function Cart({ closeCart }: CartProps) {
+        const { products } = useCartStore();  
+        const total = products.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    
+        return(
+            <div className={styles.cartOverlay}>
+            <div className={styles.cartContainer}>
+              <div className={styles.cartHeader}>
+                <h3>cart</h3>
+                <button className={styles.closeBtn} onClick={closeCart}>×</button>
+              </div>
+      
+              {products.length === 0 ? (
+              <p className={styles.empty}>your cart is empty</p>
+            ) : (
+              <>
+                <ul className={styles.cartList}>
+                  {products.map((item) => (
+                    <li key={item.id} className={styles.cartItem}>
+                      <img src={item.image} alt={item.title} className={styles.itemImage} />
+                      <div className={styles.itemInfo}>
+                        <p className={styles.itemTitle}>{item.title}</p>
+                        <p className={styles.itemPrice}>
+                        {item.quantity} × ${item.price?.toFixed(2) || item.price}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+    
+                <div className={styles.cartFooter}>
+                  <p className={styles.total}>total: ${total.toFixed(2)}</p>
+                  <Link href="/checkOut">
+                    <button className={styles.checkoutBtn}>Check Out</button>
+                  </Link>
+                </div>
+              </>
+            )}
           </div>
-  
-          {products.length === 0 ? (
-          <p className={styles.empty}>your cart is empty</p>
-        ) : (
-          <>
-            <ul className={styles.cartList}>
-              {products.map((item) => (
-                <li key={item.id} className={styles.cartItem}>
-                  <img src={item.image} alt={item.title} className={styles.itemImage} />
-                  <div className={styles.itemInfo}>
-                    <p className={styles.itemTitle}>{item.title}</p>
-                    <p className={styles.itemPrice}>
-                      {item.quantity} × ${item.price.toFixed(2)}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-
-            <div className={styles.cartFooter}>
-              <p className={styles.total}>total: ${total.toFixed(2)}</p>
-              <Link href="/checkOut">
-                <button className={styles.checkoutBtn}>Check Out</button>
-              </Link>
-            </div>
-          </>
-        )}
-      </div>
-    </div>
-    );
+        </div>
+        );
 
 }
